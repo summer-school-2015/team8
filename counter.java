@@ -13,15 +13,15 @@ public class counter {
         m = t.toCharArray ();
         int spaces;
         int i=0;
-        for(int i=0;i<len;i++)
+        for(int i=0;i<len;i++)                           //
         {
          if(arrays.equals(m[i], " "))
-           if(!Arrays.equals(m[i-1], " "))
-             spaces++;
+          // if(!Arrays.equals(m[i-1], " "))
+          //   spaces++;
         }
         i--;
         if(!Arrays.equals(m[i], " "))
          spaces++;
-        System.out.println(spaces);
+        System.out.println(spaces);                       //
     }
 }
