@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Play Mode"
-                android:id="@+id/playmodebut" android:layout_gravity="center_vertical"/>
+                android:id="@+id/playmodebut" android:layout_gravity="center_vertical" android:onClick="playmodebut_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"

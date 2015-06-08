@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.graphics.Color;
 
 public class LPlayer extends Activity {
     private Button settingsbut=null;
@@ -13,6 +12,8 @@ public class LPlayer extends Activity {
     private Button infobackbut=null;
     private Button songsbackbut=null;
     private Button songsbutton=null;
+    private Button playmodebackbut=null;
+    private Button playmodebut=null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,8 @@ public class LPlayer extends Activity {
         infobackbut =(Button)findViewById(R.id.infobackbut);
         songsbackbut=(Button)findViewById(R.id.songsbackbut);
         songsbutton = (Button)findViewById(R.id.songsbutton);
+        playmodebackbut = (Button)findViewById(R.id.playmodebackbut);
+        playmodebut = (Button)findViewById(R.id.playmodebut);
 
     }
 
@@ -44,5 +47,7 @@ public class LPlayer extends Activity {
     }
     public void songsbackbut_Clicked(View v){setContentView(R.layout.main);}
     public void songsbutton_Clicked(View v){setContentView(R.layout.songs);}
+    public void playmodebackbut_Clicked(View v){setContentView(R.layout.settings);}
+    public void playmodebut_Clicked(View v){setContentView(R.layout.playmode);}
 
     }
