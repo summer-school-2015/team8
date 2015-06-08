@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:weightSum="1">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.166666">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="All Songs"
+                android:id="@+id/Songs" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.166666">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Artists"
+                android:id="@+id/artists" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.166666">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Albums"
+                android:id="@+id/albums" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.166666">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Genre"
+                android:id="@+id/genre" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.166666">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Settings"
+                android:id="@+id/settingsbutton" android:layout_gravity="center_vertical" android:onClick="settingsbutton_Clicked"/>
+    </LinearLayout>
+</LinearLayout>
+
