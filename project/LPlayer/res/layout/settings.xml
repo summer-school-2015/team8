@@ -4,6 +4,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:weightSum="1">
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt;-"
+            android:id="@+id/setbackbut" android:onClick="setbackbut_Clicked"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -13,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Play Mode"
-                android:id="@+id/playmode" android:layout_gravity="center_vertical"/>
+                android:id="@+id/playmodebut" android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -24,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Equalizer"
-                android:id="@+id/Equalizer" android:layout_gravity="center_vertical"/>
+                android:id="@+id/Eqbut" android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -35,6 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Info"
-                android:id="@+id/info" android:layout_gravity="center_vertical"/>
+                android:id="@+id/infobut" android:layout_gravity="center_vertical" android:onClick="infobut_Clicked"/>
     </LinearLayout>
 </LinearLayout>
