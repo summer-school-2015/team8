@@ -13,7 +13,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="All Songs"
-                android:id="@+id/Songs" android:layout_gravity="center_vertical"/>
+                android:id="@+id/songsbutton" android:layout_gravity="center_vertical"  android:onClick="songsbutton_Clicked" />
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
