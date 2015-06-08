@@ -4,12 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:weightSum="1" android:id="@+id/">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Now playing"
-            android:id="@+id/textView2"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="&lt;-"
+            android:id="@+id/pmodebackbut" android:onClick="pmodebackbut_Clicked"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -18,7 +14,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Random order"
-                android:id="@+id/checkBox1" android:checked="false"
+                android:id="@+id/checkBox1" android:checked="false" android:layout_weight="0.10"
                 android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <LinearLayout
