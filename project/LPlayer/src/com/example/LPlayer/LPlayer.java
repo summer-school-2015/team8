@@ -14,10 +14,14 @@ public class LPlayer extends Activity {
     private Button songsbutton=null;
     private Button playmodebackbut=null;
     private Button playmodebut=null;
-    private Button albumsbut=null;
+    private Button albumsbutton=null;
     private Button albumsbackbut=null;
-    private Button artistsbut=null;
+    private Button artistsbutton=null;
     private Button artistsbackbut=null;
+    private Button genrebutton=null;
+    private Button genrebackbut=null;
+    private Button yearbutton=null;
+    private Button yearbackbut=null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,35 +34,27 @@ public class LPlayer extends Activity {
         songsbutton = (Button)findViewById(R.id.songsbutton);
         playmodebackbut = (Button)findViewById(R.id.playmodebackbut);
         playmodebut = (Button)findViewById(R.id.playmodebut);
-        albumsbut = (Button)findViewById(R.id.albumsbut);
+        albumsbutton = (Button)findViewById(R.id.albumsbutton);
         albumsbackbut = (Button)findViewById(R.id.albumsbackbut);
-        artistsbut = (Button)findViewById(R.id.artistsbut);
-        artistsbackbut=(Button)findViewById(R.id.artistsbackbut);
+        artistsbutton = (Button)findViewById(R.id.artistsbutton);
+        artistsbackbut =(Button)findViewById(R.id.artistsbackbut);
+        genrebutton = (Button)findViewById(R.id.genrebutton);
+        genrebackbut = (Button)findViewById(R.id.genrebackbut);
+        yearbutton = (Button)findViewById(R.id.yearbutton);
+        yearbackbut = (Button)findViewById(R.id.yearbackbut);
 
     }
 
-    public void settingsbutton_Clicked(View v)
-    {
-        setContentView(R.layout.settings);
-    }
-    public void infobut_Clicked(View v)
-    {
-        setContentView(R.layout.info);
-    }
-    public void setbackbut_Clicked(View v)
-    {
-        setContentView(R.layout.main);
-    }
-    public void infobackbut_Clicked(View v)
-    {
-        setContentView(R.layout.settings);
-    }
-    public void songsbackbut_Clicked(View v){setContentView(R.layout.main);}
     public void songsbutton_Clicked(View v){setContentView(R.layout.songs);}
-    public void playmodebackbut_Clicked(View v){setContentView(R.layout.settings);}
-    public void playmodebut_Clicked(View v){setContentView(R.layout.playmode);}
-    public void albumsbut_Clicked(View v){setContentView(R.layout.albums);}
-    public void artistsbackbut_Clicked(View v){setContentView(R.layout.main);}
     public void artistsbut_Clicked(View v){setContentView(R.layout.artists);}
+    public void albumsbutton_Clicked(View v){setContentView(R.layout.albums);}
+    public void genrebutton_Clicked(View v){setContentView(R.layout.genre);}
+    public void yearbutton_Clicked(View v){setContentView(R.layout.year);}
 
+    public void settingsbutton_Clicked(View v) {setContentView(R.layout.settings);}
+    public void playmodebut_Clicked(View v){setContentView(R.layout.playmode);}
+    public void infobut_Clicked(View v) {setContentView(R.layout.info);}
+
+    public void backtomainbut_Clicked(View v){setContentView(R.layout.main);}
+    public void backtosettingsbut_Clicked(View v){setContentView(R.layout.settings);}
     }

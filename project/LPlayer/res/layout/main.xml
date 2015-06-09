@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Artists"
-                android:id="@+id/artistsbut" android:layout_gravity="center_vertical" android:onClick="artistsbutton_Clicked"/>
+                android:id="@+id/artistsbutton" android:layout_gravity="center_vertical" android:onClick="artistsbut_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Albums"
-                android:id="@+id/albumsbut" android:layout_gravity="center_vertical" android:onClick="albumsbutton_Clicked"/>
+                android:id="@+id/albumsbutton" android:layout_gravity="center_vertical" android:onClick="albumsbutton_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Genre"
-                android:id="@+id/genre" android:layout_gravity="center_vertical"/>
+                android:id="@+id/genrebutton" android:layout_gravity="center_vertical" android:onClick="genrebutton_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Release Year"
-                android:id="@+id/year" android:layout_gravity="center_vertical"/>
+                android:id="@+id/yearbutton" android:layout_gravity="center_vertical" android:onClick="yearbutton_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"

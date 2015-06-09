@@ -5,7 +5,7 @@
               android:layout_height="match_parent">
 
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="&lt;-"
-            android:id="@+id/albumsbackbut" android:onClick="albumsbackbut_Clicked"/>
+            android:id="@+id/albumsbackbut" android:onClick="backtomainbut_Clicked"/>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
