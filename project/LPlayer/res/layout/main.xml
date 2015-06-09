@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Artists"
-                android:id="@+id/artists" android:layout_gravity="center_vertical"/>
+                android:id="@+id/artistsbut" android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Albums"
-                android:id="@+id/albumsbut" android:layout_gravity="center_vertical" android:onClick="settingsbutton_Clicked"/>
+                android:id="@+id/albumsbut" android:layout_gravity="center_vertical" android:onClick="albumsbutton_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
