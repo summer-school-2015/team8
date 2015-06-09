@@ -13,7 +13,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.33">
+            android:layout_weight="0.5">
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
@@ -24,22 +24,11 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.33">
+            android:layout_weight="0.5">
         <Button
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Equalizer"
-                android:id="@+id/Eqbut" android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.33">
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 android:text="Info"
-                android:id="@+id/infobut" android:layout_gravity="center_vertical" android:onClick="infobut_Clicked"/>
+                android:id="@+id/infobut" android:onClick="infobut_Clicked" android:layout_gravity="center_vertical"/>
     </LinearLayout>
 </LinearLayout>

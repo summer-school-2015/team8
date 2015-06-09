@@ -14,6 +14,8 @@ public class LPlayer extends Activity {
     private Button songsbutton=null;
     private Button playmodebackbut=null;
     private Button playmodebut=null;
+    private Button albumsbut=null;
+    private Button albumsbackbut=null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,8 @@ public class LPlayer extends Activity {
         songsbutton = (Button)findViewById(R.id.songsbutton);
         playmodebackbut = (Button)findViewById(R.id.playmodebackbut);
         playmodebut = (Button)findViewById(R.id.playmodebut);
+        albumsbut = (Button)findViewById(R.id.albumsbut);
+        albumsbackbut = (Button)findViewById(R.id.albumsbackbut);
 
     }
 
@@ -49,5 +53,7 @@ public class LPlayer extends Activity {
     public void songsbutton_Clicked(View v){setContentView(R.layout.songs);}
     public void playmodebackbut_Clicked(View v){setContentView(R.layout.settings);}
     public void playmodebut_Clicked(View v){setContentView(R.layout.playmode);}
+    public void albumsbut_Clicked(View v){setContentView(R.layout.albums);}
+    public void albumsbackbut_Clicked(View v){setContentView(R.layout.main);}
 
     }
