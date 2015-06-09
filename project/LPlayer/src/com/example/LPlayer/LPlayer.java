@@ -7,7 +7,7 @@ import android.widget.Button;
 
 public class LPlayer extends Activity {
     private Button settingsbut=null;
-    private  Button infobut=null;
+    private Button infobut=null;
     private Button setbackbut=null;
     private Button infobackbut=null;
     private Button songsbackbut=null;
