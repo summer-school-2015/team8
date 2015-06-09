@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Artists"
-                android:id="@+id/artistsbut" android:layout_gravity="center_vertical"/>
+                android:id="@+id/artistsbut" android:layout_gravity="center_vertical" android:onClick="artistsbutton_Clicked"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
