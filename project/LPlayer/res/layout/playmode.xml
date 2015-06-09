@@ -25,17 +25,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Shuffle"
-                android:id="@+id/radioButton3" android:layout_gravity="center_vertical" android:checked="false"/>
+                android:id="@+id/radioButton3" android:layout_gravity="center_vertical" android:checked="false"
+                android:layout_weight="0.2"/>
         <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Shuffle&amp;Repeat"
-                android:id="@+id/radioButton4" android:layout_gravity="center_vertical" android:checked="false"/>
+                android:id="@+id/radioButton4" android:layout_gravity="center_vertical" android:checked="false"
+                android:layout_weight="0.2"/>
         <RadioButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Play 1 Song"
                 android:id="@+id/radioButton5" android:layout_gravity="center_vertical" android:checked="false"
-                android:layout_weight="0.95"/>
+                android:layout_weight="0.2"/>
     </RadioGroup>
 </LinearLayout>
