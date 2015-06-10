@@ -8,18 +8,33 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
+import android.widget.*;
 
-public class Songs extends Activity{
+
+import java.io.IOException;
+
+public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
 
     MediaPlayer mediaPlayer = new  MediaPlayer();
-    ListView lv=null;
-    Button songsbackbut=null;
+    private ListView lv=null;
+    private Button songsbackbut=null;
+    private ImageButton prev=null;
+    private ImageButton next=null;
+    private ImageButton pbut=null;
+    private SeekBar seekbar;
+    private Handler myHandler = new Handler();
+    private TextView timer=null;
+
+
+    String[][] titles;
+
+    int k;
+    int max;
+    int z=0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +42,13 @@ public class Songs extends Activity{
 
         songsbackbut=(Button)findViewById(R.id.songsbackbut);
 
+        prev=(ImageButton)findViewById(R.id.prev);
+        pbut=(ImageButton)findViewById(R.id.PPbut);
+        next=(ImageButton)findViewById(R.id.next);
+
+
+
         lv = (ListView)findViewById(R.id.SongslistView);
-        String[][] titles;
         String[] projection = { MediaStore.Audio.Media._ID,             // 0
 
                 MediaStore.Audio.Media.ARTIST,          // 1
@@ -75,6 +95,7 @@ public class Songs extends Activity{
             i++;
         }*/
         titles = new String[4][ musicListSDCardCursor.getCount()];
+        max=musicListSDCardCursor.getCount();
         int i=0;
         String h="";
         musicListSDCardCursor.moveToFirst();
@@ -90,6 +111,58 @@ public class Songs extends Activity{
                 android.R.layout.simple_list_item_1, titles[0]);
         lv.setAdapter(adapter);
 
+        lv.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                                    long id) {
+                setContentView(R.layout.player);
+                k=position;
+                player(k);
+            }
+        });
+
+
+    }
+    public void player(int n){
+        try {
+
+            mediaPlayer.setDataSource(titles[3][n]);
+
+            mediaPlayer.prepare();
+
+
+            mediaPlayer.start();
+            seekbar = (SeekBar)findViewById(R.id.songbar);
+            seekbar.setMax((int)mediaPlayer.getDuration());
+            seekbar.setProgress((int)mediaPlayer.getCurrentPosition());
+            seekbar.setOnSeekBarChangeListener(this);
+            myHandler.postDelayed(UpdateSongTime,100);
+
+
+
+
+        } catch (IllegalArgumentException iae) {
+
+
+            iae.printStackTrace();
+
+
+
+        } catch (IllegalStateException ise) {
+
+            ise.printStackTrace();
+
+
+
+        } catch (IOException ioe) {
+
+            ioe.printStackTrace();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
     }
 
 
@@ -120,9 +193,6 @@ public class Songs extends Activity{
             return null;
 
         }
-
-
-
     }
     public void songsbackbut_Clicked(View v){
         setContentView(R.layout.main);
@@ -130,4 +200,61 @@ public class Songs extends Activity{
         startActivity(intent);
     }
 
+    public void PPbut_Clicked(View v){
+        pbut=(ImageButton)findViewById(R.id.PPbut);
+        if(z%2==0){
+            mediaPlayer.pause();
+            pbut.setImageResource(R.drawable.play);
+            z++;
+        }
+        else
+        {
+            mediaPlayer.start();
+            pbut.setImageResource(R.drawable.pause);
+            z++;
+        }
+
+    }
+
+    public void next_Clicked(View v){
+        mediaPlayer.reset();
+        k++;
+        if (k>=max)
+            k=0;
+        player(k);
+    }
+    public void prev_Clicked(View v){
+        mediaPlayer.reset();
+        k--;
+        if (k<0)
+            k=max;
+        player(k);
+    }
+
+    private Runnable UpdateSongTime = new Runnable() {
+        public void run() {
+            timer=(TextView)findViewById(R.id.timer);
+            seekbar.setProgress((int)mediaPlayer.getCurrentPosition());
+            myHandler.postDelayed(this, 100);
+            int b=(int)(((float)mediaPlayer.getDuration()- (float)mediaPlayer.getCurrentPosition())/60000);
+            timer.setText(""+b+":"+((int)((((float)mediaPlayer.getDuration()- (float)mediaPlayer.getCurrentPosition())/1000)%60)));
+        }
+    };
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        mediaPlayer.seekTo(seekBar.getProgress());
+
+
+    }
 }

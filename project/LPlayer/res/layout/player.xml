@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:weightSum="1">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView" android:layout_gravity="center_horizontal" android:layout_weight="0.38"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.60">
+        <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/songbar" android:indeterminate="false" />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:weightSum="1">
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/prev" android:layout_gravity="center_vertical" android:onClick="prev_Clicked"
+                    android:src="@drawable/prev" android:layout_weight="0.2"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="125dp"
+                    android:id="@+id/PPbut" android:layout_gravity="center_vertical" android:onClick="PPbut_Clicked"
+                    android:src="@drawable/pause" android:layout_weight="0.6"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/next" android:layout_gravity="center_vertical" android:src="@drawable/next" android:onClick="next_Clicked"
+                    android:layout_weight="0.2"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/timer" android:layout_gravity="center_horizontal"/>
+</LinearLayout>
