@@ -1,16 +1,24 @@
 package com.example.LPlayer;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class LPlayer extends Activity {
     private Button settingsbut=null;
-    private Button infobut=null;
+    private  Button infobut=null;
     private Button setbackbut=null;
     private Button infobackbut=null;
-    private Button songsbackbut=null;
     private Button songsbutton=null;
     private Button playmodebackbut=null;
     private Button playmodebut=null;
@@ -23,6 +31,9 @@ public class LPlayer extends Activity {
     private Button yearbutton=null;
     private Button yearbackbut=null;
 
+    MediaPlayer mediaPlayer = new  MediaPlayer();
+    ListView lv=null;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -30,7 +41,6 @@ public class LPlayer extends Activity {
         infobut = (Button)findViewById(R.id.infobut);
         setbackbut = (Button)findViewById(R.id.setbackbut);
         infobackbut =(Button)findViewById(R.id.infobackbut);
-        songsbackbut=(Button)findViewById(R.id.songsbackbut);
         songsbutton = (Button)findViewById(R.id.songsbutton);
         playmodebackbut = (Button)findViewById(R.id.playmodebackbut);
         playmodebut = (Button)findViewById(R.id.playmodebut);
@@ -42,10 +52,16 @@ public class LPlayer extends Activity {
         genrebackbut = (Button)findViewById(R.id.genrebackbut);
         yearbutton = (Button)findViewById(R.id.yearbutton);
         yearbackbut = (Button)findViewById(R.id.yearbackbut);
+        yearbackbut = (Button)findViewById(R.id.yearbackbut);
+
 
     }
 
-    public void songsbutton_Clicked(View v){setContentView(R.layout.songs);}
+    public void songsbutton_Clicked(View v){
+        setContentView(R.layout.songs);
+        Intent intent = new Intent(LPlayer.this, Songs.class);
+        startActivity(intent);
+    }
     public void artistsbut_Clicked(View v){setContentView(R.layout.artists);}
     public void albumsbutton_Clicked(View v){setContentView(R.layout.albums);}
     public void genrebutton_Clicked(View v){setContentView(R.layout.genre);}
@@ -57,4 +73,8 @@ public class LPlayer extends Activity {
 
     public void backtomainbut_Clicked(View v){setContentView(R.layout.main);}
     public void backtosettingsbut_Clicked(View v){setContentView(R.layout.settings);}
+
     }
+
+
+
