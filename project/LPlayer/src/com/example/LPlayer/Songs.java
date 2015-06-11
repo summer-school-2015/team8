@@ -15,6 +15,8 @@ import android.widget.*;
 
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
@@ -28,6 +30,9 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     private SeekBar seekbar;
     private Handler myHandler = new Handler();
     private TextView timer=null;
+    private TextView namefield=null;
+    private Button backplayerbut=null;
+    Bundle savedstate=null;
 
 
     String[][] titles;
@@ -40,15 +45,14 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songs);
+        savedstate=savedInstanceState;
 
         songsbackbut=(Button)findViewById(R.id.songsbackbut);
 
         prev=(ImageButton)findViewById(R.id.prev);
         pbut=(ImageButton)findViewById(R.id.PPbut);
         next=(ImageButton)findViewById(R.id.next);
-
-
-
+        backplayerbut=(Button)findViewById(R.id.backplayerbut);
 
         lv = (ListView)findViewById(R.id.SongslistView);
         String[] projection = { MediaStore.Audio.Media._ID,             // 0
@@ -127,7 +131,8 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     }
     public void player(int n){
         try {
-
+            mediaPlayer.reset();
+            
             mediaPlayer.setDataSource(titles[3][n]);
 
             mediaPlayer.prepare();
@@ -197,6 +202,13 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
         }
     }
+
+    public void backplayerbut_Clicked(View v) throws InterruptedException {
+        myHandler.removeCallbacks(UpdateSongTime);
+        setContentView(R.layout.songs);
+        onCreate(savedstate);
+    }
+
     public void songsbackbut_Clicked(View v){
         setContentView(R.layout.main);
         Intent intent = new Intent(Songs.this, LPlayer.class);
@@ -237,10 +249,12 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
             timer=(TextView)findViewById(R.id.timer);
+            namefield=(TextView)findViewById(R.id.namefield);
             seekbar.setProgress((int)mediaPlayer.getCurrentPosition());
             myHandler.postDelayed(this, 100);
             int b=(int)(((float)mediaPlayer.getDuration()- (float)mediaPlayer.getCurrentPosition())/60000);
             timer.setText("" + b + ":" + ((int) ((((float) mediaPlayer.getDuration() - (float) mediaPlayer.getCurrentPosition()) / 1000) % 60)));
+            namefield.setText(titles[1][k] +" - " +titles[0][k] +"\n" +titles[2][k]);
             if(seekbar.getProgress()>=dur)
             {
                 mediaPlayer.reset();
