@@ -56,8 +56,13 @@ public class LPlayer extends Activity {
         Intent intent = new Intent(LPlayer.this, Songs.class);
         startActivity(intent);
     }
-    public void artistsbut_Clicked(View v){setContentView(R.layout.artists);}
-    public void albumsbutton_Clicked(View v){setContentView(R.layout.albums);}
+    public void artistsbut_Clicked(View v){
+        setContentView(R.layout.artists);
+        //Intent intent = new Intent(LPlayer.this, Artists.class);
+        //startActivity(intent);
+    }
+    public void albumsbutton_Clicked(View v){setContentView(R.layout.albums);
+    }
     public void genrebutton_Clicked(View v){setContentView(R.layout.genre);}
     public void yearbutton_Clicked(View v){setContentView(R.layout.year);}
 

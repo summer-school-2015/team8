@@ -13,16 +13,17 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.*;
 
-
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
-public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
+/**
+ * Created by User on 6/11/2015.
+ */
+public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener {
 
 
     MediaPlayer mediaPlayer = new  MediaPlayer();
     private ListView lv=null;
+    private ListView isplv=null;
     private Button songsbackbut=null;
     private ImageButton prev=null;
     private ImageButton next=null;
@@ -36,26 +37,29 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
 
     String[][] titles;
+    String[][] trecs;
 
     int k;
     int max;
     boolean isPause=false;
     int dur;
+    int p=0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.songs);
-        savedstate=savedInstanceState;
+        setContentView(R.layout.artists);
+        savedstate = savedInstanceState;
 
-        songsbackbut=(Button)findViewById(R.id.songsbackbut);
+        songsbackbut = (Button) findViewById(R.id.songsbackbut);
 
-        prev=(ImageButton)findViewById(R.id.prev);
-        pbut=(ImageButton)findViewById(R.id.PPbut);
-        next=(ImageButton)findViewById(R.id.next);
-        backplayerbut=(Button)findViewById(R.id.backplayerbut);
+        prev = (ImageButton) findViewById(R.id.prev);
+        pbut = (ImageButton) findViewById(R.id.PPbut);
+        next = (ImageButton) findViewById(R.id.next);
+        backplayerbut = (Button) findViewById(R.id.backplayerbut);
 
-        lv = (ListView)findViewById(R.id.SongslistView);
-        String[] projection = { MediaStore.Audio.Media._ID,             // 0
+        lv = (ListView) findViewById(R.id.artistslistview);
+        isplv = (ListView) findViewById(R.id.isplv);
+        String[] projection = {MediaStore.Audio.Media._ID,             // 0
 
                 MediaStore.Audio.Media.ARTIST,          // 1
 
@@ -76,7 +80,6 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
         };      // 7
 
 
-
         String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 ";
 
         Cursor musicListSDCardCursor = myquery(
@@ -85,7 +88,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
 
-                projection, selection , null, null,0);
+                projection, selection, null, null, 0);
 
         Cursor musicListInternalMemoryCursor = myquery(
 
@@ -93,31 +96,67 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
                 MediaStore.Audio.Media.INTERNAL_CONTENT_URI,
 
-                projection, selection , null, null,0);
+                projection, selection, null, null, 0);
         //   musicListSDCardCursor.moveToFirst();
      /*   int i=0;
         while(musicListSDCardCursor.isAfterLast() == false) {
             musicListSDCardCursor.moveToNext();
             i++;
         }*/
-        titles = new String[4][ musicListSDCardCursor.getCount()];
-        max=musicListSDCardCursor.getCount();
-        int i=0;
-        String h="";
+        titles = new String[4][musicListSDCardCursor.getCount()];
+        max = musicListSDCardCursor.getCount();
+        int i = 0;
+        String h = "";
         musicListSDCardCursor.moveToFirst();
-        while(musicListSDCardCursor.isAfterLast() == false){
-            titles[3][i]=musicListSDCardCursor.getString(5);
-            titles[2][i]=musicListSDCardCursor.getString(4);
-            titles[1][i]=musicListSDCardCursor.getString(1);
-            titles[0][i]=musicListSDCardCursor.getString(2);
+        while (musicListSDCardCursor.isAfterLast() == false) {
+            titles[3][i] = musicListSDCardCursor.getString(5);
+            titles[2][i] = musicListSDCardCursor.getString(4);
+            titles[1][i] = musicListSDCardCursor.getString(1);
+            titles[0][i] = musicListSDCardCursor.getString(2);
             musicListSDCardCursor.moveToNext();
             i++;
         }
+        boolean flag;
+        trecs = new String[4][max];
+        String[] art=new String[max];
+        for (int d=0; d < max; d++) {
+            flag=true;
+            for (int m=0;m<d;d++){
+                if (titles[1][d].equals(art[m])) {
+                    flag=false;
+                }
+                if(flag){
+                    art[p]=titles[1][d];
+                    p++;
+                }
+
+            }
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, titles[0]);
+                android.R.layout.simple_list_item_1, art);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                                    long id) {
+                setContentView(R.layout.ispol);
+                int e=0;
+                for(int a=0;a<max;a++)
+                {
+                    if(art[position].equals(titles[1][a])){
+                        for(int r=0;r<4;r++){
+                            trecs[r][e]=titles[r][a];
+                        }
+                        e++;
+                    }
+                }
+            }
+        });
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, trecs[0]);
+        isplv.setAdapter(adapter1);
+        isplv.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
@@ -126,6 +165,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
                 player(k);
             }
         });
+
 
 
     }
@@ -206,15 +246,19 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
         }
     }
 
+    public void ispolbackbut_Clicked(View v) throws InterruptedException {
+        setContentView(R.layout.artists);
+        onCreate(savedstate);
+    }
     public void backplayerbut_Clicked(View v) throws InterruptedException {
         myHandler.removeCallbacks(UpdateSongTime);
         setContentView(R.layout.songs);
         onCreate(savedstate);
     }
 
-    public void songsbackbut_Clicked(View v){
+    public void  backtomainbut_Clicked(View v){
         setContentView(R.layout.main);
-        Intent intent = new Intent(Songs.this, LPlayer.class);
+        Intent intent = new Intent(Artists.this, LPlayer.class);
         startActivity(intent);
     }
 
@@ -287,4 +331,3 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     }
 
 }
-
