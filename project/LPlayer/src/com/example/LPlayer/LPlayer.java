@@ -58,8 +58,8 @@ public class LPlayer extends Activity {
     }
     public void artistsbut_Clicked(View v){
         setContentView(R.layout.artists);
-        //Intent intent = new Intent(LPlayer.this, Artists.class);
-        //startActivity(intent);
+        Intent intent = new Intent(LPlayer.this, Artists.class);
+        startActivity(intent);
     }
     public void albumsbutton_Clicked(View v){setContentView(R.layout.albums);
     }

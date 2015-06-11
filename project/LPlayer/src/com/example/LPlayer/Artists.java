@@ -38,12 +38,14 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
 
     String[][] titles;
     String[][] trecs;
+    String[][] trecs2;
 
     int k;
     int max;
-    boolean isPause=false;
+    boolean isPause=false, isClicked = false;
     int dur;
     int p=0;
+    int e=0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +108,6 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
         titles = new String[4][musicListSDCardCursor.getCount()];
         max = musicListSDCardCursor.getCount();
         int i = 0;
-        String h = "";
         musicListSDCardCursor.moveToFirst();
         while (musicListSDCardCursor.isAfterLast() == false) {
             titles[3][i] = musicListSDCardCursor.getString(5);
@@ -116,24 +117,30 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
             musicListSDCardCursor.moveToNext();
             i++;
         }
-        boolean flag;
+        boolean flag=true;
         trecs = new String[4][max];
         String[] art=new String[max];
+        String[] art2;
         for (int d=0; d < max; d++) {
             flag=true;
-            for (int m=0;m<d;d++){
+            for (int m=0;m<p;m++){
                 if (titles[1][d].equals(art[m])) {
                     flag=false;
                 }
-                if(flag){
-                    art[p]=titles[1][d];
-                    p++;
-                }
-
+            }
+            if(flag){
+                art[p]=titles[1][d];
+                p++;
             }
         }
+        art2=new String[p];
+        for(i=0;i<p;i++){
+            art2[i]=art[i];
+        }
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, art);
+                android.R.layout.simple_list_item_1, art2);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -141,20 +148,34 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
                 setContentView(R.layout.ispol);
-                int e=0;
                 for(int a=0;a<max;a++)
                 {
-                    if(art[position].equals(titles[1][a])){
+                    if(art2[position].equals(titles[1][a])){
                         for(int r=0;r<4;r++){
                             trecs[r][e]=titles[r][a];
                         }
                         e++;
                     }
+
                 }
+                trecs2=new String[4][e];
+                for(int i=0;i<e;i++){
+                    for(int r=0;r<4;r++)
+                    {
+                        trecs2[r][i]=trecs[r][i];
+                    }
+                }
+                selectsongs();
             }
         });
+
+        
+    }
+    void selectsongs()
+    {
+        isplv = (ListView) findViewById(R.id.isplv);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, trecs[0]);
+                android.R.layout.simple_list_item_1, trecs2[0]);
         isplv.setAdapter(adapter1);
         isplv.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
@@ -165,15 +186,14 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
                 player(k);
             }
         });
-
-
-
     }
+
+
     public void player(int n){
         try {
             mediaPlayer.reset();
 
-            mediaPlayer.setDataSource(titles[3][n]);
+            mediaPlayer.setDataSource(trecs2[3][n]);
 
             mediaPlayer.prepare();
 
