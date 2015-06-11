@@ -35,6 +35,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     int k;
     int max;
     int z=0;
+    int dur;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
         prev=(ImageButton)findViewById(R.id.prev);
         pbut=(ImageButton)findViewById(R.id.PPbut);
         next=(ImageButton)findViewById(R.id.next);
+
 
 
 
@@ -132,6 +134,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
 
             mediaPlayer.start();
+            dur=mediaPlayer.getDuration();
             seekbar = (SeekBar)findViewById(R.id.songbar);
             seekbar.setMax((int)mediaPlayer.getDuration());
             seekbar.setProgress((int)mediaPlayer.getCurrentPosition());
@@ -237,7 +240,15 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
             seekbar.setProgress((int)mediaPlayer.getCurrentPosition());
             myHandler.postDelayed(this, 100);
             int b=(int)(((float)mediaPlayer.getDuration()- (float)mediaPlayer.getCurrentPosition())/60000);
-            timer.setText(""+b+":"+((int)((((float)mediaPlayer.getDuration()- (float)mediaPlayer.getCurrentPosition())/1000)%60)));
+            timer.setText("" + b + ":" + ((int) ((((float) mediaPlayer.getDuration() - (float) mediaPlayer.getCurrentPosition()) / 1000) % 60)));
+            if(seekbar.getProgress()>=dur)
+            {
+                mediaPlayer.reset();
+                k++;
+                if (k>=max)
+                    k=0;
+                player(k);
+            }
         }
     };
 
@@ -257,4 +268,6 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
 
 
     }
+
 }
+
