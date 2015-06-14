@@ -16,9 +16,9 @@ import android.widget.*;
 import java.io.IOException;
 
 /**
- * Created by User on 6/11/2015.
+ * Created by User on 6/15/2015.
  */
-public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener {
 
 
     MediaPlayer mediaPlayer = new  MediaPlayer();
@@ -49,7 +49,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.albums);
+        setContentView(R.layout.artists);
         savedstate = savedInstanceState;
 
         songsbackbut = (Button) findViewById(R.id.songsbackbut);
@@ -59,7 +59,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
         next = (ImageButton) findViewById(R.id.next);
         backplayerbut = (Button) findViewById(R.id.backplayerbut);
 
-        lv = (ListView) findViewById(R.id.artistslistview);
+        lv = (ListView) findViewById(R.id.arlbumslistview);
         isplv = (ListView) findViewById(R.id.isplv);
         String[] projection = {MediaStore.Audio.Media._ID,             // 0
 
@@ -119,28 +119,28 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
         }
         boolean flag=true;
         trecs = new String[4][max];
-        String[] art=new String[max];
-        String[] art2;
+        String[] alb=new String[max];
+        String[] alb2;
         for (int d=0; d < max; d++) {
             flag=true;
             for (int m=0;m<p;m++){
-                if (titles[1][d].equals(art[m])) {
+                if (titles[2][d].equals(alb[m])) {
                     flag=false;
                 }
             }
             if(flag){
-                art[p]=titles[1][d];
+                alb[p]=titles[2][d];
                 p++;
             }
         }
-        art2=new String[p];
+        alb2=new String[p];
         for(i=0;i<p;i++){
-            art2[i]=art[i];
+            alb2[i]=alb[i];
         }
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, art2);
+                android.R.layout.simple_list_item_1, alb2);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -150,7 +150,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
                 setContentView(R.layout.ispol);
                 for(int a=0;a<max;a++)
                 {
-                    if(art2[position].equals(titles[1][a])){
+                    if(alb2[position].equals(titles[2][a])){
                         for(int r=0;r<4;r++){
                             trecs[r][e]=titles[r][a];
                         }
@@ -169,7 +169,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
             }
         });
 
-        
+
     }
     void selectsongs()
     {
@@ -278,7 +278,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
 
     public void  backtomainbut_Clicked(View v){
         setContentView(R.layout.main);
-        Intent intent = new Intent(Artists.this, LPlayer.class);
+        Intent intent = new Intent(Albums.this, LPlayer.class);
         startActivity(intent);
     }
 

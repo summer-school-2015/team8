@@ -14,5 +14,6 @@
         </activity>
         <activity android:name=".Songs"/>
         <activity android:name=".Artists"/>
+        <activity android:name=".Albums"/>
     </application>
 </manifest>

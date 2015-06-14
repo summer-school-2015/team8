@@ -8,7 +8,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.166666">
+            android:layout_weight="0.25">
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
@@ -19,7 +19,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.166666">
+            android:layout_weight="0.25">
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
@@ -30,7 +30,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.166666">
+            android:layout_weight="0.25">
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
@@ -41,29 +41,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.166666">
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Genre"
-                android:id="@+id/genrebutton" android:layout_gravity="center_vertical" android:onClick="genrebutton_Clicked"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.166666">
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Release Year"
-                android:id="@+id/yearbutton" android:layout_gravity="center_vertical" android:onClick="yearbutton_Clicked"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.166666">
+            android:layout_weight="0.25">
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
