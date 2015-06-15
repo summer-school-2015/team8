@@ -13,31 +13,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Normal"
-                android:id="@+id/radioButton" android:layout_gravity="center_vertical"
+                android:id="@+id/normal" android:layout_gravity="center_vertical"
                 android:checked="false" android:layout_weight="0.20"/>
         <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Repeat"
-                android:id="@+id/radioButton2" android:layout_gravity="center_vertical" android:checked="false"
+                android:id="@+id/repeat" android:layout_gravity="center_vertical" android:checked="false"
                 android:layout_weight="0.2"/>
         <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Shuffle"
-                android:id="@+id/radioButton3" android:layout_gravity="center_vertical" android:checked="false"
+                android:id="@+id/shuffle" android:layout_gravity="center_vertical" android:checked="false"
                 android:layout_weight="0.2"/>
         <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Shuffle&amp;Repeat"
-                android:id="@+id/radioButton4" android:layout_gravity="center_vertical" android:checked="false"
+                android:id="@+id/shuufrep" android:layout_gravity="center_vertical" android:checked="false"
                 android:layout_weight="0.2"/>
         <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:text="Play 1 Song"
-                android:id="@+id/radioButton5" android:layout_gravity="center_vertical" android:checked="false"
+                android:id="@+id/ponson" android:layout_gravity="center_vertical" android:checked="false"
                 android:layout_weight="0.2"/>
     </RadioGroup>
 </LinearLayout>

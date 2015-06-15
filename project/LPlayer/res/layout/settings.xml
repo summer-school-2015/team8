@@ -13,18 +13,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.5">
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Play Mode"
-                android:id="@+id/playmodebut" android:layout_gravity="center_vertical" android:onClick="playmodebut_Clicked"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:layout_weight="0.5">
+            android:layout_weight="1">
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

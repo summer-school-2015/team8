@@ -44,12 +44,14 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
     int max;
     boolean isPause=false, isClicked = false;
     int dur;
-    int p=0;
-    int e=0;
+    int p;
+    int e;
+    int id;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.artists);
+        setContentView(R.layout.albums);
+        id=R.layout.albums;
         savedstate = savedInstanceState;
 
         songsbackbut = (Button) findViewById(R.id.songsbackbut);
@@ -58,6 +60,9 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
         pbut = (ImageButton) findViewById(R.id.PPbut);
         next = (ImageButton) findViewById(R.id.next);
         backplayerbut = (Button) findViewById(R.id.backplayerbut);
+
+        e=0;
+        p=0;
 
         lv = (ListView) findViewById(R.id.arlbumslistview);
         isplv = (ListView) findViewById(R.id.isplv);
@@ -173,6 +178,7 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
     }
     void selectsongs()
     {
+        id=R.layout.ispol;
         isplv = (ListView) findViewById(R.id.isplv);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, trecs2[0]);
@@ -191,6 +197,7 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
 
     public void player(int n){
         try {
+            id=R.layout.player;
             mediaPlayer.reset();
 
             mediaPlayer.setDataSource(trecs2[3][n]);
@@ -267,11 +274,13 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
     }
 
     public void ispolbackbut_Clicked(View v) throws InterruptedException {
+        id=R.layout.artists;
         setContentView(R.layout.artists);
         onCreate(savedstate);
     }
     public void backplayerbut_Clicked(View v) throws InterruptedException {
         myHandler.removeCallbacks(UpdateSongTime);
+        id=R.layout.artists;
         setContentView(R.layout.artists);
         onCreate(savedstate);
     }
@@ -320,7 +329,10 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
             seekbar.setProgress((int)mediaPlayer.getCurrentPosition());
             myHandler.postDelayed(this, 100);
             int b=(int)(((float)mediaPlayer.getDuration()- (float)mediaPlayer.getCurrentPosition())/60000);
-            timer.setText("" + b + ":" + ((int) ((((float) mediaPlayer.getDuration() - (float) mediaPlayer.getCurrentPosition()) / 1000) % 60)));
+            if(((((float) mediaPlayer.getDuration() - (float) mediaPlayer.getCurrentPosition()) / 1000) % 60)<10)
+                timer.setText("" + b + ":0" +((int) ((((float) mediaPlayer.getDuration() - (float) mediaPlayer.getCurrentPosition()) / 1000) % 60)));
+            else
+                timer.setText("" + b + ":" +((int) ((((float) mediaPlayer.getDuration() - (float) mediaPlayer.getCurrentPosition()) / 1000) % 60)));
             namefield.setText(titles[1][k] +" - " +titles[0][k] +"\n" +titles[2][k]);
             if(seekbar.getProgress()>=dur)
             {
@@ -348,6 +360,30 @@ public class Albums extends Activity implements SeekBar.OnSeekBarChangeListener 
         mediaPlayer.seekTo(seekBar.getProgress());
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(id==R.layout.player) {
+            myHandler.removeCallbacks(UpdateSongTime);
+            setContentView(R.layout.albums);
+            onCreate(savedstate);
+        }
+
+        else {
+            if(id==R.layout.ispol)
+            {
+                setContentView(R.layout.albums);
+                onCreate(savedstate);
+            }
+            else
+            if(id==R.layout.albums){
+                setContentView(R.layout.main);
+                mediaPlayer.reset();
+                Intent intent = new Intent(Albums.this, LPlayer.class);
+                startActivity(intent);
+            }
+        }
     }
 
 }

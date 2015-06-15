@@ -24,7 +24,6 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
     MediaPlayer mediaPlayer = new  MediaPlayer();
     private ListView lv=null;
     private ListView isplv=null;
-    private Button songsbackbut=null;
     private ImageButton prev=null;
     private ImageButton next=null;
     private ImageButton pbut=null;
@@ -34,6 +33,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
     private TextView namefield=null;
     private Button backplayerbut=null;
     Bundle savedstate=null;
+    private  Button artistsbackbut=null;
 
 
     String[][] titles;
@@ -44,20 +44,25 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
     int max;
     boolean isPause=false, isClicked = false;
     int dur;
-    int p=0;
-    int e=0;
+    int p;
+    int e;
+    int id;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.albums);
-        savedstate = savedInstanceState;
+        setContentView(R.layout.artists);
 
-        songsbackbut = (Button) findViewById(R.id.songsbackbut);
+        id=R.layout.artists;
+        savedstate = savedInstanceState;
 
         prev = (ImageButton) findViewById(R.id.prev);
         pbut = (ImageButton) findViewById(R.id.PPbut);
         next = (ImageButton) findViewById(R.id.next);
         backplayerbut = (Button) findViewById(R.id.backplayerbut);
+        artistsbackbut = (Button)findViewById(R.id.artistsbackbut);
+
+        e=0;
+        p=0;
 
         lv = (ListView) findViewById(R.id.artistslistview);
         isplv = (ListView) findViewById(R.id.isplv);
@@ -173,6 +178,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
     }
     void selectsongs()
     {
+        id=R.layout.ispol;
         isplv = (ListView) findViewById(R.id.isplv);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, trecs2[0]);
@@ -191,6 +197,7 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
 
     public void player(int n){
         try {
+            id=R.layout.player;
             mediaPlayer.reset();
 
             mediaPlayer.setDataSource(trecs2[3][n]);
@@ -268,16 +275,19 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
 
     public void ispolbackbut_Clicked(View v) throws InterruptedException {
         setContentView(R.layout.artists);
+        id=R.layout.artists;
         onCreate(savedstate);
     }
     public void backplayerbut_Clicked(View v) throws InterruptedException {
         myHandler.removeCallbacks(UpdateSongTime);
         setContentView(R.layout.artists);
+        id=R.layout.artists;
         onCreate(savedstate);
     }
 
     public void  backtomainbut_Clicked(View v){
         setContentView(R.layout.main);
+        mediaPlayer.reset();
         Intent intent = new Intent(Artists.this, LPlayer.class);
         startActivity(intent);
     }
@@ -349,5 +359,29 @@ public class Artists extends Activity implements SeekBar.OnSeekBarChangeListener
 
 
     }
+    @Override
+    public void onBackPressed() {
+        if(id==R.layout.player) {
+            myHandler.removeCallbacks(UpdateSongTime);
+            setContentView(R.layout.artists);
+            onCreate(savedstate);
+        }
 
+        else {
+            if(id==R.layout.ispol)
+            {
+                setContentView(R.layout.artists);
+                onCreate(savedstate);
+            }
+            else
+            if(id==R.layout.artists){
+                setContentView(R.layout.main);
+                mediaPlayer.reset();
+                Intent intent = new Intent(Artists.this, LPlayer.class);
+                startActivity(intent);
+            }
+        }
+    }
 }
+
+

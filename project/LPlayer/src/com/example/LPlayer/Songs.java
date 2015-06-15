@@ -41,10 +41,12 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     int max;
     boolean isPause=false;
     int dur;
+    int id;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songs);
+        id=R.layout.songs;
         savedstate=savedInstanceState;
 
         songsbackbut=(Button)findViewById(R.id.songsbackbut);
@@ -113,6 +115,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
             musicListSDCardCursor.moveToNext();
             i++;
         }
+        //sort();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, titles[0]);
         lv.setAdapter(adapter);
@@ -131,6 +134,7 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     }
     public void player(int n){
         try {
+            id=R.layout.player;
             mediaPlayer.reset();
 
             mediaPlayer.setDataSource(titles[3][n]);
@@ -209,11 +213,13 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
     public void backplayerbut_Clicked(View v) throws InterruptedException {
         myHandler.removeCallbacks(UpdateSongTime);
         setContentView(R.layout.songs);
+        id=R.layout.songs;
         onCreate(savedstate);
     }
 
     public void songsbackbut_Clicked(View v){
         setContentView(R.layout.main);
+        mediaPlayer.reset();
         Intent intent = new Intent(Songs.this, LPlayer.class);
         startActivity(intent);
     }
@@ -284,6 +290,22 @@ public class Songs extends Activity implements SeekBar.OnSeekBarChangeListener{
         mediaPlayer.seekTo(seekBar.getProgress());
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        if(id==R.layout.player) {
+            myHandler.removeCallbacks(UpdateSongTime);
+            setContentView(R.layout.songs);
+            onCreate(savedstate);
+        }
+
+        else
+            if(id==R.layout.songs){
+                setContentView(R.layout.main);
+                mediaPlayer.reset();
+                Intent intent = new Intent(Songs.this, LPlayer.class);
+                startActivity(intent);
+            }
     }
 
 }
